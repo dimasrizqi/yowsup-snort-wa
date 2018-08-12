@@ -1,0 +1,60 @@
+<?php
+$url=$_SERVER['REQUEST_URI'];
+header("Refresh: 5; URL=$url"); 
+date_default_timezone_set('Asia/Jakarta');
+$ipaddress = '';
+if (getenv('HTTP_CLIENT_IP'))
+    $ipaddress = getenv('HTTP_CLIENT_IP');
+else if(getenv('HTTP_X_FORWARDED_FOR'))
+    $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+else if(getenv('HTTP_X_FORWARDED'))
+    $ipaddress = getenv('HTTP_X_FORWARDED');
+else if(getenv('HTTP_FORWARDED_FOR'))
+    $ipaddress = getenv('HTTP_FORWARDED_FOR');
+else if(getenv('HTTP_FORWARDED'))
+   $ipaddress = getenv('HTTP_FORWARDED');
+else if(getenv('REMOTE_ADDR'))
+    $ipaddress = getenv('REMOTE_ADDR');
+else
+    $ipaddress = 'tidak diketahui';
+//echo ("$ipaddress \n");
+$nomor="628989541406";
+//shell_exec("nmr=628989541406");
+//$pesan='Terjadi FTP Bruteforce pada server dari $ipaddress';
+//$execQuery = '/var/www/html/yowsup/yowsup-cli demos -c /var/www/html/yowsup/pengaturan -s "628989541406" "pesan $ipaddress"';
+//$output = shell_exec($execQuery);
+//echo $output;
+$file = '/var/log/auth.log';
+$searchfor = 'ICMP';
+// the following line prevents the browser from parsing this as HTML.
+header('Content-Type: text/plain');
+
+// get the file contents, assuming the file to be readable (and exist)
+$contents = file_get_contents($file);
+// escape special characters in the query
+$pattern = preg_quote($searchfor, '/');
+// finalise the regular expression, matching the whole line
+$pattern = "/^.*$pattern.*\$/m";
+// search, and store all matching occurences in $matches
+
+
+//if(preg_match_all($patternftp, $contents, $matches)){
+//echo "ftp attach";
+//}
+if(preg_match_all($pattern, $contents, $matches)){
+exec('/var/www/html/yowsup/yowsup-cli demos -c /var/www/html/yowsup/pengaturan -s "628989541406" "Terjadi BRUTE FORCE ATACK pada server dari ip 10.10.10.12."');
+echo "Notifikasi Telah Dikirim";
+//untuk kosonging auth log
+$current .= " ";
+// Write the contents back to the file
+file_put_contents($file, $current);
+}
+else{
+   echo "Tidak ada serangan";
+//untuk kosonging auth log
+$current .= " ";
+// Write the contents back to the file
+file_put_contents($file, $current);
+}
+
+?>

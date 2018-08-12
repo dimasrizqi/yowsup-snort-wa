@@ -1,0 +1,21 @@
+<?php
+//exec ('yowsup-cli demos -c pengaturan -s $nmr "$msg"');
+//exec('ls', $out);
+//var_dump($out);
+// Look an array
+//shell_exec('nmr="628989541406"');
+//shell_exec('msg="ini pesan dari terminal whatsapp"');
+//$nmrnya="628989541406";
+//$msg="hahahhaa";
+//exec('export msg="hahahahahaaaaa"');
+//untuk kirim ke whtasppnya
+//exec('yowsup-cli demos -c pengaturan --send "628989541406" "msg"');
+//shell_exec('env');
+// Look -- a string with newlines in it
+//$echonya = shell_exec('nmr=628989541406');
+//$output = shell_exec('env');
+
+echo "<pre>$echonya</pre>";
+//echo "<pre>$output</pre>";
+
+?>
